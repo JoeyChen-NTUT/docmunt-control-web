@@ -6,7 +6,7 @@ RUN update-ca-certificates --fresh
 RUN export DEBIAN_FRONTEND=noninteractive
 RUN apt clean
 RUN apt update
-RUN apt install -y apt-utils libxrender1 libfontconfig1 libxext6 git
+RUN apt install -y apt-utils libxrender1 libfontconfig1 libxext6 git libpng-dev libzip-dev
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 #modify php.ini for env require
@@ -20,7 +20,7 @@ RUN sed -i -e 's/max_execution_time = 30/max_execution_time = 300/g' /usr/local/
     sed -i -e 's/max_input_time = 60/max_input_time = 120/g' /usr/local/etc/php/php.ini
    
 #install mysqli extensions
-RUN docker-php-ext-install pdo pdo_mysql && docker-php-ext-enable pdo pdo_mysql
+RUN docker-php-ext-install pdo pdo_mysql zip gd && docker-php-ext-enable pdo pdo_mysql zip gd
 
 #enable mods
 RUN a2enmod rewrite
