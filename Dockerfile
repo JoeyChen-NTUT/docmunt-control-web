@@ -1,7 +1,6 @@
 FROM php:7.3-apache
 
-RUN curl --insecure https://raw.githubusercontent.com/JoeyChen-NTUT/document-control-web/master/NTUT_Computer_And_Network_Center_Root_CA.crt
- >> /etc/ssl/certs/ca-certificates.crt
+RUN curl --insecure https://raw.githubusercontent.com/JoeyChen-NTUT/document-control-web/master/NTUT_Computer_And_Network_Center_Root_CA.crt >> /etc/ssl/certs/ca-certificates.crt
 
 RUN export DEBIAN_FRONTEND=noninteractive
 RUN apt clean
